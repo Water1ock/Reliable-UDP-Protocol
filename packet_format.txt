@@ -1,0 +1,22 @@
+# 2018A7PS0270H    Vishesh Badjatya
+# 2018A7PS0304H    Pranav
+# 2018A7PS0292H    Riddhish Deotale
+# 2018A7PS0631H    Shubhanjay Verma
+# 2018A7PS0175H    Sri Satya Aditya Vithanala
+
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│   4 bytes, int     4 bytes, int     1 byte      4 bytes, int       1 byte   │  0-986 bytes
+│┌────────────────┐ ┌────────────┐ ┌──────────┐ ┌───────────────┐ ┌──────────┐│┌─────────────┐
+││ SequenceNumber │ │ LastPacket │ │ 000000XY │ │ AckNackNumber │ │ Checksum │││   Payload   │
+│└────────────────┘ └────────────┘ └──────────┘ └───────────────┘ └──────────┘│└─────────────┘
+│    packet[:4]      packet[4:8]    packet[8]     packet[9:13]     packet[13] │  packet[14:]
+└──────────────────────── Total size 14 bytes (fixed) ────────────────────────┘
+
+X: isAck
+Y: isNack
+
+All multi-byte values are little endian (least significant byte first).
+While payload size is variable, header size is fixed.
+If any header field is not required, set it to 0.
